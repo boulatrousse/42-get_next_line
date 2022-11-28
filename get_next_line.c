@@ -6,30 +6,26 @@
 /*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 12:28:36 by lboulatr          #+#    #+#             */
-/*   Updated: 2022/11/25 15:40:03 by lboulatr         ###   ########.fr       */
+/*   Updated: 2022/11/28 14:13:18 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdio.h>
+#include <fcntl.h>
 
-#define BUFFER_SIZE 50
-
-// char *get_next_line(int fd)
-// {
-    
-// }
-
+#define BUFFER_SIZE 5
 
 
 
 int main()
 {
-    char    *buffer[BUFFER_SIZE + 1];
-    int x = open("colorado.txt", O_RDONLY);
-    read(x, buffer, BUFFER_SIZE);
-    printf("%s\n", buffer);
-    
-}
+	int     fd = open("noaapoes.txt", O_RDONLY);
+    printf("%s", get_next_line(fd));
+    printf("%s", get_next_line(fd));
+    printf("%s", get_next_line(fd));
+    printf("%s", get_next_line(fd));
 
-//O_RDONLY
+    
+	return (0);
+}
