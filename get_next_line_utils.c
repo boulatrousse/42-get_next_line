@@ -6,7 +6,7 @@
 /*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 12:28:33 by lboulatr          #+#    #+#             */
-/*   Updated: 2022/11/28 14:05:43 by lboulatr         ###   ########.fr       */
+/*   Updated: 2022/11/28 14:37:32 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,21 @@ size_t	ft_strlen(const char *str)
 	while (str[i] != '\0')
 		i++;
 	return (i);
+}
+
+void	*ft_memcpy(void *dest, const void *src, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	if (dest == src || n == 0)
+		return (dest);
+	if (!dest && !src)
+		return (0);
+	while (i < n)
+	{
+		((char *)dest)[i] = ((char *)src)[i];
+		i++;
+	}
+	return (dest);
 }

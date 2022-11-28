@@ -6,7 +6,7 @@
 /*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 15:16:16 by lboulatr          #+#    #+#             */
-/*   Updated: 2022/11/28 14:05:54 by lboulatr         ###   ########.fr       */
+/*   Updated: 2022/11/28 14:44:29 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ size_t	ft_strlen(const char *str);
 char	*ft_strjoin(char const *s1, char const *s2);
 int     ft_search(char *str);
 char    *ft_search_n(char *str);
+void	*ft_memcpy(void *dest, const void *src, size_t n);
 
 #endif
