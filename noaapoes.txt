@@ -1,13 +1,4 @@
 boulatr
 hustler
 blabla
-The Polar-orbiting Operational Environmental Satellite (POES) was a constellation of polar orbiting weather satellites
-funded by the National Oceanic and Atmospheric Administration (NOAA) and the European Organisation for the Exploitation
-of Meteorological Satellites (EUMETSAT) with the intent of improving the accuracy and detail of weather analysis and
-forecasting.[1] The spacecraft were provided by NASA and the European Space Agency (ESA), and NASA's Goddard Space Flight
-Center oversaw the manufacture, integration and test of the NASA-provided TIROS satellites.[2] The first polar-orbiting
-weather satellite launched as part of the POES constellation was the Television Infrared Observation Satellite-N (TIROS-N),
-which was launched on 13 October 1978. The final spacecraft, NOAA-19 (NOAA-N Prime), was launched on 6 February 2009.[3]
-The ESA-provided MetOp satellite operated by EUMETSAT utilize POES-heritage instruments for the purpose of data continuity.
-The Joint Polar Satellite System (JPSS-1, now NOAA-20), which was launched on 18 November 2017, is the successor
-to the POES Program.[4]
+super-smash

@@ -6,7 +6,7 @@
 /*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 15:16:16 by lboulatr          #+#    #+#             */
-/*   Updated: 2022/11/28 14:44:29 by lboulatr         ###   ########.fr       */
+/*   Updated: 2022/11/29 12:53:55 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,11 @@ char	*get_next_line(int fd);
 
 // utils --------------------------
 void	get_next_line_utils(void);
-size_t	ft_strlen(const char *str);
+int		ft_search(char *str);
 char	*ft_strjoin(char const *s1, char const *s2);
-int     ft_search(char *str);
-char    *ft_search_n(char *str);
+size_t	ft_strlen(const char *str);
+char	*ft_cut(char *str);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
+char	*ft_strdup(const char *s1);
 
 #endif
