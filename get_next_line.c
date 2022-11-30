@@ -6,7 +6,7 @@
 /*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 12:28:36 by lboulatr          #+#    #+#             */
-/*   Updated: 2022/11/29 16:05:17 by lboulatr         ###   ########.fr       */
+/*   Updated: 2022/11/30 14:06:21 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,21 @@
 #include <stdio.h>
 #include <fcntl.h>
 
-char	*ft_strchr_bis(const char *str, int c)
+#define BUFFER_SIZE 3
+
+size_t	ft_strlen(const char *str)
+{
+	int	i;
+
+	i = 0;
+	if (!str)
+		return (0);
+	while (str[i] != '\0')
+		i++;
+	return (i);
+}
+
+char	*ft_strchr(const char *str, int c)
 {
 	int			i;
 	char		b;
@@ -26,7 +40,7 @@ char	*ft_strchr_bis(const char *str, int c)
 	while (str[i] != '\0')
 	{
 		if (str[i] == b)
-			return (&s[i + 1]);
+			return (&s[i]);
 		else
 			i++;
 	}
@@ -36,46 +50,35 @@ char	*ft_strchr_bis(const char *str, int c)
 		return (NULL);
 }
 
-char	*ft_cut(char *str)
-{
-	size_t	i;
-
-	i = 0;
-	while (str[i] != '\n')
-		i++;
-	str[i + 1] = '\0';
-	return (str);
-}
-
 char	*get_next_line(int fd)
 {
-	char			buffer[BUFFER_SIZE + 1];
-	char			*line;
-	static char		*tmp;
-	char			*stash;
-	size_t			byte;
+	char	buffer[BUFFER_SIZE + 1];
+	char	*tmp;
+	static char	*stash;
+	char	*line;
+	int		byte;
 
-	line = "";
-	stash = "";
-	byte = 1;
-	if (read(fd, NULL, 0) == -1 || fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
-	while (byte != 0)
+	byte = 0;
+	if (!stash)
+		stash = ft_strdup("");
+	while (ft_strchr(buffer, '\n') == NULL)
 	{
 		byte = read(fd, buffer, BUFFER_SIZE);
 		buffer[byte] = '\0';
-		if (ft_search(buffer) == 0)
-			stash = ft_strjoin(stash, buffer);
-		else
-		{
-			stash = ft_strjoin(stash, buffer);
-			line = ft_cut(ft_strdup(stash));
-			if (tmp != NULL)
-				line = ft_strjoin(tmp, line);
-			tmp = ft_strchr_bis(stash, '\n');
-			return (line);
-		}
+		tmp = stash;
+		line = ft_strjoin(tmp, buffer);
 	}
-    free(line);
-	return (stash);
+
+	return (line);
+}
+
+int main()
+{
+	int x = open("noaapoes.txt", O_RDONLY);
+	printf("1 : %s", get_next_line(x));
+	printf("2 : %s", get_next_line(x));
+	printf("3 : %s\n", get_next_line(x));
+
+
+	return 0;
 }
