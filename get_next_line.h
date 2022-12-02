@@ -6,7 +6,7 @@
 /*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 15:16:16 by lboulatr          #+#    #+#             */
-/*   Updated: 2022/11/30 12:31:16 by lboulatr         ###   ########.fr       */
+/*   Updated: 2022/12/02 10:43:21 by lboulatr         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@
 # include <stdio.h>
 # include <unistd.h>
 
-// prime fct ----------------------
-char	*get_next_line(int fd);
-size_t	ft_strlen(const char *str);
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 3
+# endif
 
-// utils --------------------------
-void	get_next_line_utils(void);
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_strdup(const char *s1);
-char	*ft_surplus(char *str);
-char	*ft_cutline(char *str);
-int	    ft_search(char *str);
+char	*get_next_line(int fd);
+void	ft_cut_buffer(char *str);
+void	*ft_free(char *str);
+int		ft_strchr_n(char *str);
+int		ft_strlen(char *str);
+int		ft_strlen_bis(char *str);
+char	*ft_strjoin_bis(char *s1, char *s2);
 
 #endif

@@ -6,79 +6,55 @@
 /*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 12:28:36 by lboulatr          #+#    #+#             */
-/*   Updated: 2022/11/30 14:06:21 by lboulatr         ###   ########.fr       */
+/*   Updated: 2022/12/02 11:27:03 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
-#include <fcntl.h>
 
-#define BUFFER_SIZE 3
-
-size_t	ft_strlen(const char *str)
+void	ft_cut_buffer(char *str)
 {
-	int	i;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
-	if (!str)
-		return (0);
-	while (str[i] != '\0')
+	j = 0;
+	while (str[i] && str[i] != '\n')
 		i++;
-	return (i);
-}
-
-char	*ft_strchr(const char *str, int c)
-{
-	int			i;
-	char		b;
-	char		*s;
-
-	i = 0;
-	b = c;
-	s = (char *)str;
-	while (str[i] != '\0')
+	if (str[i] == '\n')
+		i++;
+	while (j < BUFFER_SIZE - i)
 	{
-		if (str[i] == b)
-			return (&s[i]);
-		else
-			i++;
+		str[j] = str[j + i];
+		j++;
 	}
-	if ((str[i] == '\0') && (b == '\0'))
-		return (&s[i]);
-	else
-		return (NULL);
+	str[j] = '\0';
 }
 
 char	*get_next_line(int fd)
 {
-	char	buffer[BUFFER_SIZE + 1];
-	char	*tmp;
-	static char	*stash;
-	char	*line;
-	int		byte;
+	static char	buffer[BUFFER_SIZE + 1];
+	char		*line;
+	int			x;
 
-	byte = 0;
-	if (!stash)
-		stash = ft_strdup("");
-	while (ft_strchr(buffer, '\n') == NULL)
+	x = 1;
+	line = NULL;
+	if (read(fd, NULL, 0) == -1 || fd < 0 || fd > 1023 || BUFFER_SIZE <= 0)
+		return (buffer[0] = 0, NULL);
+	if (ft_strchr_n(buffer) != -1)
 	{
-		byte = read(fd, buffer, BUFFER_SIZE);
-		buffer[byte] = '\0';
-		tmp = stash;
-		line = ft_strjoin(tmp, buffer);
+		ft_cut_buffer(buffer);
+		line = ft_strjoin_bis(line, buffer);
+		if (line[0] == '\0')
+			line = ft_free(line);
 	}
-
+	while (ft_strchr_n(buffer) == -1 && x > 0)
+	{
+		x = read(fd, buffer, BUFFER_SIZE);
+		if (x <= 0)
+			return (line);
+		buffer[x] = '\0';
+		line = ft_strjoin_bis(line, buffer);
+	}
 	return (line);
-}
-
-int main()
-{
-	int x = open("noaapoes.txt", O_RDONLY);
-	printf("1 : %s", get_next_line(x));
-	printf("2 : %s", get_next_line(x));
-	printf("3 : %s\n", get_next_line(x));
-
-
-	return 0;
 }
